@@ -21,3 +21,13 @@ export const updateStudent = async(id,student)=>{
 export const deleteStudent = async(id)=>{
     await axios.delete(`${API_URL}/${id}`);
 }
+
+export const sendChatMessage = async(message)=>{
+    const response= await axios.post(
+        "http://localhost:8000/api/chat",
+        {
+            message:message
+        }
+    );
+    return response.data;
+}

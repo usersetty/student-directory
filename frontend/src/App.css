@@ -361,3 +361,153 @@ td:last-child button:hover {
     grid-template-columns: 1fr;
   }
 }
+
+.sql-section {
+  margin-top: 15px;
+}
+
+.sql-section summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.sql-section pre {
+  margin-top: 10px;
+  padding: 12px;
+  background: #1f2937;
+  color: #f9fafb;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+
+/* ============================= */
+/* AI CHATBOT */
+/* ============================= */
+
+.chatbot {
+  background: white;
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.chatbot h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.chatbot-description {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #6b7280;
+}
+
+.chat-form {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-form input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  color: #1f2937;
+  background: white;
+}
+
+.chat-form input:focus {
+  border-color: #2563eb;
+}
+
+.chat-form button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chat-form button:hover {
+  background: #1d4ed8;
+}
+
+.chat-form button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Chat response */
+
+.chat-response {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f3f4f6;
+  border-left: 4px solid #2563eb;
+  border-radius: 6px;
+  line-height: 1.6;
+}
+
+/* SQL section */
+
+.sql-section {
+  margin-top: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.sql-section summary {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  background: #f9fafb;
+  color: #374151;
+}
+
+.sql-section summary:hover {
+  background: #f3f4f6;
+}
+
+.sql-section pre {
+  margin: 0;
+  padding: 15px;
+  background: #111827;
+  color: #e5e7eb;
+  overflow-x: auto;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Chat error */
+
+.chat-error {
+  margin-top: 15px;
+  padding: 12px 15px;
+  border-radius: 6px;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .chat-form {
+    flex-direction: column;
+  }
+
+  .chat-form button {
+    width: 100%;
+  }
+
+  .chatbot {
+    padding: 18px;
+  }
+}

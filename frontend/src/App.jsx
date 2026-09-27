@@ -3,7 +3,8 @@ import {
   getStudents,
   createStudent,
   updateStudent,
-  deleteStudent
+  deleteStudent,
+  sendChatMessage
 } from "./api";
 
 import "./App.css";
@@ -12,6 +13,7 @@ function App() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [chatSQL, setChatSQL] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -21,6 +23,9 @@ function App() {
   });
 
   const [editingId, setEditingId] = useState(null);
+  const [chatMessage, setChatMessage] = useState("");
+  const [chatResponse, setChatResponse] = useState("");
+  const [chatLoading, setChatLoading] = useState(false);
 
   const fetchStudents = async () => {
     try {
@@ -149,6 +154,33 @@ function App() {
     setEditingId(null);
   };
 
+
+  const handleChat = async (e) => {
+    e.preventDefault();
+
+    if (!chatMessage.trim()) {
+      return;
+    }
+
+    try {
+      setChatLoading(true);
+      setChatResponse("");
+      const data = await sendChatMessage(chatMessage);
+
+      setChatResponse(data.answer);
+      setChatSQL(data.sql);
+
+
+    }
+    catch (err) {
+
+      setChatResponse("Sorry i could process your question")
+      print(err)
+    }
+    finally {
+      setChatLoading(false);
+    }
+  }
   return (
     <div className="container">
 
@@ -257,8 +289,47 @@ function App() {
           </tbody>
         </table>
       )}
+      <div className="chatbot">
 
+        <h2>Student Assistant</h2>
+
+        <p className="chat-help">
+          Ask questions about students, courses, and ages.
+        </p>
+
+        <form onSubmit={handleChat} className="chat-form">
+
+          <input
+            type="text"
+            placeholder="Ask something..."
+            value={chatMessage}
+            onChange={(e) => setChatMessage(e.target.value)}
+          />
+
+          <button type="submit" disabled={chatLoading}>
+            {chatLoading ? "Thinking..." : "Ask"}
+          </button>
+
+        </form>
+
+        {chatResponse && (
+          <div className="chat-response">
+            {chatResponse}
+          </div>
+        )}
+        {
+          chatSQL && (
+            <details className="sql-section">
+              <summary>Show generated SQL</summary>
+              <pre>{chatSQL}</pre>
+            </details>
+          )
+        }
+
+      </div>
     </div>
+
+
   );
 }
 
